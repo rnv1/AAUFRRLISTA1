@@ -1,43 +1,73 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/* 
+ * File:   newmain.c
+ * Author: rodri
+ *
+ * Created on 16 May 2017, 11:38
+ */
+
+// C program for implementation of selection sort
 #include <stdio.h>
-#include <stdlib.h>
-#include <assert.h>
+#include <time.h>
 
-#include "AVL.h"
-
-#define N (1024)
-#define MULTIPLIER (97)
-
-int
-main(int argc, char **argv)
+ 
+void swap(int *xp, int *yp)
 {
-    AvlTree t = AVL_EMPTY;
+    int temp = *xp;
+    *xp = *yp;
+    *yp = temp;
+}
+ 
+void selectionSort(int arr[], int n)
+{
+    int i, j, min_idx;
+ 
+    // One by one move boundary of unsorted subarray
+    for (i = 0; i < n-1; i++)
+    {
+        // Find the minimum element in unsorted array
+        min_idx = i;
+        for (j = i+1; j < n; j++)
+          if (arr[j] < arr[min_idx])
+            min_idx = j;
+ 
+        // Swap the found minimum element with the first element
+        swap(&arr[min_idx], &arr[i]);
+    }
+}
+ 
+/* Function to print an array */
+void printArray(int arr[], int size)
+{
     int i;
-
-    if(argc != 1) {
-        fprintf(stderr, "Usage: %s\n", argv[0]);
-        return 1;
+    for (i=0; i < size; i++)
+        printf("%d ", arr[i]);
+    printf("\n");
+}
+ 
+// Driver program to test above functions
+int main()
+{
+    int arr[10000], i;
+    for (i = 0; i < 10000; i++){
+        arr[i] = rand() % 1000;
     }
+    int n = sizeof(arr)/sizeof(arr[0]);
+    clock_t tic = clock();
 
-    for(i = 0; i < N; i++) {
-        avlInsert(&t, (i*MULTIPLIER) % N);
-    }
+    selectionSort(arr, n);
+    
+    clock_t toc = clock();
+    printf("%lo",toc);
+    printf("%lo",tic);
+    printf("\n\n\nElapsed: %f seconds\n", (double)(toc - tic) / (double)CLOCKS_PER_SEC);
 
-    printf("height %d\n", avlGetHeight(t));
-
-    assert(avlSearch(t, N-1) == 1);
-    assert(avlSearch(t, N) == 0);
-
-    avlSanityCheck(t);
-
-    for(i = 0; i < N-1; i++) {
-        avlDeleteMin(&t);
-    }
-
-    avlSanityCheck(t);
-
-    avlPrintKeys(t);
-
-    avlDestroy(t);
-
+    printf("Sorted array: \n");
+    printArray(arr, n);
     return 0;
 }
