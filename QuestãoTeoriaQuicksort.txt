@@ -1,0 +1,11 @@
+       O algoritmo quicksort divide o problema grande em problemas menores, já que é de divisão e conquista, os problemas
+menores são ordenados independentemente, as soluções aõ unidas para produzir o resultado final.
+       Escolhe-se arbitrariamente um pivô, e a partir desse pivô o vetor será dividido em duas partes, à esquerda os números 
+com chave menores ou iguais a x, e à direita números com chaves maiores do que x.
+
+       Algoritmo:
+       1-Escolher um pivô arbitrariamente.
+       2-Percorrer o vetor a partir da esquerda até que A[i]=> x;
+       3-Percorrer o vetor a partir da esquerda até que A[j]=< x;
+       4-Trocar A[i] com A[j].
+       5-Continuar esse processo até que os apontadores i e j se cruzem.

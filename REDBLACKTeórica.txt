@@ -1,0 +1,5 @@
+          Árvore vermelha e preta é um tipo de árvore binária, com o diferencial de que os nós são "coloridos", de forma 
+que a raiz e as folhas NULL são pretas, se um nó é vermelho então seu filho será preto e todos os caminhos de um nó para os 
+seus descendentes contém o mesmo nome de nós pretos.
+          Dessa forma o caminho até o nó mais distante tem um comprimento menor que 2 vezes o caminho para o nó NULL mais
+próximo.
